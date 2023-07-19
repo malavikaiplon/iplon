@@ -1,1 +1,310 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "iPLON MANGER API",
+    "description": "This is iplon api documentation",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:8800",
+  "basePath": "/",
+  
+  "schemes": [
+    "http"
+  ],
 
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "security": [{
+    "basic": []
+  }],
+	"paths": {
+    "/egaugemeter": {
+     
+      "get": {
+          "tags": [
+            "Get Egaugemeter Data"
+          ],
+          "summary": "Get Egaugemeter Data for requesting parameters",
+          "parameters":  [{
+            "name": "org",
+            "in": "query",
+            "default":5,
+             "enum": [1,2,3,4,5,6,7,8,9,10,11,12],
+             "required": true,
+            "description": "The id of the organisation from which to get the data.",
+            "type": "string"
+          },
+          {
+            "name": "p",
+            "in": "query",
+            "enum": ["egauge"],
+            "required": true,
+            "description": "The plant from which to get the values.",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "enum": [75568,75569,75570,77153,77154,83559],
+            "required": true,
+            "description": "The iid of meter from which to get the values",
+            "type": "string"
+          },          
+          {
+            "name": "d",
+            "in": "query",
+            "enum": ["EM01"],
+            "required": true,
+            "description": "The device from which to get the values.",
+            "type": "string"
+          },
+          {
+            "name": "f",
+            "in": "query",
+            "enum": ["EAE","EAE_DAY","EAE_Month","EAE_Year"],
+            "required": true,
+            "description": "The field from which to get the values.",
+            "type": "string"
+          },
+	  {
+            "name": "Start_Limit",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get from the measurement for eg: -1d, -1h, -5m",
+            "example": "eg: -1d, -1h, -5m",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get from the measurement for eg:YYYY-mm-ddTHH:MM:SSZ",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          {
+            "name": "stop",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get upto the measurement for eg:YYYY-mm-ddTHH:MM:SSZ",
+            "example": "2023-01-01T23:59:59Z",
+            "type": "string"
+          },
+          {
+            "name": "ZoneInfo",
+            "in": "query",
+            "required": true,
+            "description": "For IST +5.30 from UTC, 5.30 convert to seconds values 19800 + microseconds = '19800' + '000' = 19800000",
+            "example": "5.30 converter to seconds '19800' + '000' = 19800000 ZoneInfo",
+            "type": "string"
+          }
+        ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized Access"
+            }
+          },
+		  "security": [
+			{
+			  "basic": []
+			}
+		  ]
+		}
+	  },
+    "/arraymeter": {
+     
+      "get": {
+          "tags": [
+            "Get Arraymeter Data"
+          ],
+          "summary": "Get Arraymeter Data for requesting parameters",
+          "parameters":  [{
+            "name": "org",
+            "in": "query",
+            "enum": [1,2,3,4,5,6,7,8,9,10,11,12],
+            "required": true,
+            "description": "The id of the organisation from which to get the data.",
+            "type": "string"
+          },
+          {
+            "name": "p",
+            "in": "query",
+            "required": true,
+            "description": "The plant from which to get the values.",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "The iid of meter from which to get the values",
+            "type": "string"
+          },          
+          {
+            "name": "d",
+            "in": "query",
+            "required": true,
+            "description": "The device from which to get the values.",
+            "type": "string"
+          },
+          {
+            "name": "f",
+            "in": "query",
+            "required": true,
+            "description": "The field from which to get the values.",
+            "type": "string"
+          },
+	  {
+            "name": "Start_Limit",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get from the measurement for eg: -1d, -1h, -5m",
+            "example": "eg: -1d, -1h, -5m",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get from the measurement for eg:YYYY-mm-ddTHH:MM:SSZ",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          {
+            "name": "stop",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get upto the measurement for eg:YYYY-mm-ddTHH:MM:SSZ",
+            "example": "2023-01-01T23:59:59Z",
+            "type": "string"
+          },
+          {
+            "name": "ZoneInfo",
+            "in": "query",
+            "required": true,
+            "description": "For IST +5.30 from UTC, 5.30 convert to seconds values 19800 + microseconds = '19800' + '000' = 19800000",
+            "example": "5.30 converter to seconds '19800' + '000' = 19800000 ZoneInfo",
+            "type": "string"
+          }
+        ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized Access"
+            }
+          },
+		  "security": [
+			{
+			  "basic": []
+			}
+		  ]
+		}
+	  },
+    "/influx": {
+     
+      "get": {
+          "tags": [
+            "Get influxdb Data"
+          ],
+          "summary": "Get influxdb Data for requesting parameters",
+          "parameters":  [{
+            "name": "org",
+            "in": "query",
+            "required": true,
+            "description": "The id of the organisation from which to get the data.",
+            "type": "string"
+          },
+          {
+            "name": "p",
+            "in": "query",
+            "required": true,
+            "description": "The plant from which to get the values.",
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "description": "The iid of meter from which to get the values",
+            "type": "string"
+          },          
+          {
+            "name": "d",
+            "in": "query",
+            "required": true,
+            "description": "The device from which to get the values.",
+            "type": "string"
+          },
+          {
+            "name": "f",
+            "in": "query",
+            "required": true,
+            "description": "The field from which to get the values.",
+            "type": "string"
+          },
+	  {
+            "name": "Start_Limit",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get from the measurement for eg: -1d, -1h, -5m",
+            "example": "eg: -1d, -1h, -5m",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get from the measurement for eg:YYYY-mm-ddTHH:MM:SSZ",
+            "example": "2023-01-01T00:00:00Z",
+            "type": "string"
+          },
+          {
+            "name": "stop",
+            "in": "query",
+            "required": false,
+            "description": "The time range of value which you want to get upto the measurement for eg:YYYY-mm-ddTHH:MM:SSZ",
+            "example": "2023-01-01T23:59:59Z",
+            "type": "string"
+          },
+          {
+            "name": "ZoneInfo",
+            "in": "query",
+            "required": true,
+            "description": "For IST +5.30 from UTC, 5.30 convert to seconds values 19800 + microseconds = '19800' + '000' = 19800000",
+            "example": "5.30 converter to seconds '19800' + '000' = 19800000 ZoneInfo",
+            "type": "string"
+          }
+        ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "401": {
+              "description": "Unauthorized Access"
+            }
+          },
+		  "security": [
+			{
+			  "basic": []
+			}
+		  ]
+		}
+	  }
+	}
+  }
+  
